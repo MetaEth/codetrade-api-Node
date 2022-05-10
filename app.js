@@ -11,6 +11,15 @@ var admin=require('./router/admin')
 
 
 
+
+//socket
+router.get('/view', async ctx => {
+  ctx.body="hello"
+})
+
+
+
+
 app.keys = ['some secret hurr'];  /* cookie的签名 */
 const CONFIG = {
   key: 'koa:sess', /* 默认的cookie签名 */
@@ -23,8 +32,6 @@ const CONFIG = {
   renew: false, /** cookie快过期时自动重新设置*/
 };
 app.use(session(CONFIG, app));
-
-
 let db=require('./db/index')
 ;(async ()=>{
   await db

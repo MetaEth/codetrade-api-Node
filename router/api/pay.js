@@ -1,9 +1,10 @@
 var router=require('koa-router')()
-var User=require('../../module/user')
-var VipOrder=require('../../module/viporder')
+var All_vipOrder=require('../../module/all_viporder')
+var All_shopOrder=require('../../module/all_shoporder')
 let Wx_Secret=require('../../utils/Wx_Secret')
 const WxPay = require('wechatpay-node-v3')
 const fs=require('fs')
+
 const pay = new WxPay({
   appid: Wx_Secret.AppID,
   mchid: Wx_Secret.mch_id,
@@ -15,42 +16,34 @@ router.get('/payfind',async (ctx)=>{
   ctx.body=result
 })
 router.post('/wechatpay',async (ctx)=>{
-  var payMoney=ctx.request.body.payMoney*100
+  var payMoney=Number(ctx.request.body.payMoney).toFixed(2)*100
+  console.log(ctx.request.body.payMoney,payMoney,typeof payMoney)
   var description=ctx.request.body.description
+  var payType=ctx.request.body.payType
   var out_trade_no=randomStr()
-  console.log(out_trade_no,"pp")
   const params = {
     description: description,
     out_trade_no: out_trade_no,
     notify_url: Wx_Secret.notify_url,
+    attach:payType,//用于判断是shoporder还是viporder
     amount: {
       total: payMoney,
     },
-    // scene_info: {
-    //   payer_client_ip: 'ip',
-    // },
   };
   const result = await pay.transactions_native(params);
+  result.order_id=out_trade_no,
   ctx.body=result
-  console.log(result)
 })
-
-router.post('/',async (ctx)=>{
+router.post('/all_shoporder',async (ctx)=>{
   var object=ctx.request.body
-  var ownId= object.own
-  var userUpdate={vip_type: object.vip_type,vipAt: object.vipAt}
-  var vipOrder={
-    own:object.own,
-    orderId:object.orderId,
-    payMoney:object.payMoney,
-    vipType:object.vip_type,
-    remarks:object.remarks
-  }
-  var resultOne= await User.updateOne({_id:ownId},userUpdate)
-  var resultTwo=await VipOrder.create(vipOrder)
-  console.log(object,"data")
-  console.log(resultTwo,"data")
-  ctx.body={status: 200, message: '支付成功', data: {user:resultOne,vip:resultTwo}}
+  var result=await All_shopOrder.create(object)
+  ctx.body=result
+})
+router.post('/all_viporder',async (ctx)=>{
+  var object=ctx.request.body
+  console.log(object,"object")
+  var result=await All_vipOrder.create(object)
+  ctx.body=result
 })
 function randomStr(){	//产生一个随机字符串
   var str = "";

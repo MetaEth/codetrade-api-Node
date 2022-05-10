@@ -1,5 +1,6 @@
 //暴露一个登陆的模型
 let mongoose=require('mongoose')
+const {Double} = require("mongodb");
 //1.请来一个保安----引入约束
 let Schema=mongoose.Schema
 let ShopSchema=new Schema({
@@ -10,7 +11,7 @@ let ShopSchema=new Schema({
         type:String
     },
     price:{
-        type:Number
+        type:Number,
     },
     label:{
         type:Array

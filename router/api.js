@@ -4,7 +4,7 @@ var pay=require('./api/pay')
 var server_time=require('./api/server_time')
 var tencentcloud=require('./api/tencentcloud')
 var wechat=require('./api/wechat')
-var server_back=require('./api/service_back')
+var notify_url=require('./api/notify_url')
 const User = require("../module/user");
 const tokenConfig = require('../utils/Wx_Secret').tokenConfig
 const jwt = require("jsonwebtoken");
@@ -34,5 +34,5 @@ router.use('/pay',pay)
 router.use('/server_time',server_time)
 router.use('/tencentcloud',tencentcloud)
 router.use('/wechat',wechat)
-router.use('/service_back',server_back)
+router.use('/notify_url',notify_url)
 module.exports=router

@@ -5,6 +5,9 @@ var Type=require('./view/type')
 var Platform=require('./view/platform')
 var codeType=require('./view/codetype')
 var shopOrder=require('./view/shoporder')
+
+
+
 router.use('/user',user)
 router.use('/shop',Shop)
 router.use('/type',Type)

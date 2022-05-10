@@ -41,7 +41,7 @@ router.get('/sendsms',async (ctx)=>{
         // 应用 ID 可前往 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage) 查看
         SmsSdkAppId: "1400667461",
         /* 短信签名内容: 使用 UTF-8 编码，必须填写已审核通过的签名 */
-        SignName: "欧莉丝商贸有限公司",
+        SignName: "闲鸭源码",
         /* 模板 ID: 必须填写已审核通过的模板 ID */
         TemplateId: TemplateId,
         /* 模板参数: 模板参数的个数需要与 TemplateId 对应模板的变量个数保持一致，若无模板参数，则设置为空 */
