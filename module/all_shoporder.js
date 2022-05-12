@@ -21,6 +21,10 @@ let All_shopOrderSchema=new Schema({
         type:String,
         required: true,//是否必填
     },
+    //socketId，用于存放客户端生成的socketId
+    socketId:{
+      type:String,
+    },
     status:{
         type:String,
         default:"未确定",

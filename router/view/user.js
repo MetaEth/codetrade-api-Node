@@ -9,6 +9,7 @@ router.post('/findOne',async (ctx)=>{
   ctx.body=result
 })
 router.post('/insertOne',async (ctx)=>{
+  console.log(ctx.request.body,"pppppppp")
   var get_smscode=ctx.request.body.smscode
   var get_phone=ctx.request.body.phone
   var get_password=ctx.request.body.password

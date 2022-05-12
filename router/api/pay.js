@@ -41,7 +41,6 @@ router.post('/all_shoporder',async (ctx)=>{
 })
 router.post('/all_viporder',async (ctx)=>{
   var object=ctx.request.body
-  console.log(object,"object")
   var result=await All_vipOrder.create(object)
   ctx.body=result
 })

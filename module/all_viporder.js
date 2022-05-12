@@ -21,6 +21,10 @@ let All_vipOrderSchema=new Schema({
         type:String,
         required: true,//是否必填
     },
+    //socketId，用于存放客户端生成的socketId
+    socketId:{
+        type:String,
+    },
     payMoney:{
         type:Number,
         required:true

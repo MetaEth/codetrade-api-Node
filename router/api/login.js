@@ -28,15 +28,6 @@ router.post('/',async (ctx)=>{
   }
 
 
-
-  // if(result){
-  //   result.vipAt=moment(result.vipAt).format('YYYY-MM-DD HH:mm:ss');
-  //   result.createdAt=moment(result.createdAt).format('YYYY-MM-DD HH:mm:ss');
-  //   ctx.body={"data":result,"status":200,"mes":"登录成功"}
-  // }else{
-  //   ctx.body={"data":null,"status":-400,"mes":"登录失败"}
-  // }
-
 })
 
 module.exports=router.routes()

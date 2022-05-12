@@ -8,6 +8,8 @@ const All_vipOrder=require("../../module/all_viporder")
 const vipOrder=require("../../module/viporder")
 const shopOrder=require("../../module/shoporder")
 const User=require("../../module/user")
+//映入socket.io模块
+const Socket=require("../../app")
 const pay = new WxPay({
     appid: Wx_Secret.AppID,
     mchid: Wx_Secret.mch_id,
@@ -33,8 +35,9 @@ router.post('/',async (ctx)=>{
                 payMoney: object.payMoney,
                 remarks: object.remarks
             }
-            var shopOrder_data=await shopOrder.create(params)
-            console.log(shopOrder_data,"11111111")
+            await shopOrder.create(params)
+            //向客户端发送支付成功通知
+            Socket.io.to(object.socketId).emit('payStatus',{"code": "200", "message": "支付成功","socketId":object.socketId})
         }else if(result.attach=="vipPay"){
             //all_viporder表查询并插入数据
             var object=await All_vipOrder.findOne({orderId:orderId})
@@ -48,9 +51,11 @@ router.post('/',async (ctx)=>{
             }
             await vipOrder.create(params)
             await User.updateOne({vip_type:object.vipType,vipAt:object.vipAt})
+            //向客户端发送支付成功通知
+            Socket.io.to(object.socketId).emit('payStatus',{"code": 200, "message": "支付成功","socketId":object.socketId})
         }
         console.log(result,"解密的数据")
-        ctx.body=result
+        ctx.body={"code":"SUCCESS","message": "ok"}
     }catch (err){
         ctx.body="非法请求"
     }
