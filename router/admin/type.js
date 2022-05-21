@@ -1,12 +1,15 @@
+const Type = require("../../module/type");
 var router=require('koa-router')()
-var Platform=require('../../module/platform')
+
+//查找所有数据
 router.post('/find',async (ctx)=>{
-    var result=await Platform.find().sort({"platform_sort":-1})
+    let result=await Type.find().sort({'type_sort':-1})
     ctx.body=result
 })
 router.post('/insertOne',async (ctx)=>{
     var get_data=ctx.request.body
-    var result=await Platform.create(get_data)
+    var result=await Type.create(get_data)
     ctx.body=result
 })
 module.exports=router.routes()
+

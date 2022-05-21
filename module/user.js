@@ -34,7 +34,6 @@ let _UserSchema=new Schema({
   updatedAt:{
     type:Date,
     default: Date.now,
-    select: false
   }
 })
 module.exports=mongoose.model('_user',_UserSchema)

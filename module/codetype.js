@@ -4,12 +4,16 @@ let mongoose=require('mongoose')
 let Schema=mongoose.Schema
 let codeTypeSchema=new Schema({
     codetype:{
-        type:String
+        type:String,
+        required:true
+    },
+    sort:{
+        type:Number,
+        required:true
     },
     createdAt:{
         type:Date,
-        default:Date.now,
-        select:false
+        default:Date.now
     },
     updatedAt:{
         type:Date,

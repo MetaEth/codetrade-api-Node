@@ -27,7 +27,7 @@ router.post('/wechatpay',async (ctx)=>{
     notify_url: Wx_Secret.notify_url,
     attach:payType,//用于判断是shoporder还是viporder
     amount: {
-      total: payMoney,
+      total: parseInt(payMoney)
     },
   };
   const result = await pay.transactions_native(params);

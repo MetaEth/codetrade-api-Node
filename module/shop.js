@@ -16,6 +16,14 @@ let ShopSchema=new Schema({
     label:{
         type:Array
     },
+    is_sale:{
+      type:Boolean,
+      default:true
+    },
+    sale_number:{
+        type:Number,
+        default:0
+    },
     project_introduce:{
         type:String
     },
@@ -57,7 +65,6 @@ let ShopSchema=new Schema({
     createdAt:{
         type:Date,
         default:Date.now,
-        select: false
     },
     updatedAt:{
         type:Date,

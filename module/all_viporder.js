@@ -14,7 +14,7 @@ let All_vipOrderSchema=new Schema({
         ref:'_user'
     },
     vipType:{
-        type:String,
+        type:Number,
         required:true
     },
     orderId:{
@@ -24,6 +24,11 @@ let All_vipOrderSchema=new Schema({
     //socketId，用于存放客户端生成的socketId
     socketId:{
         type:String,
+    },
+    //0代表未支付，1代表支付
+    status:{
+        type:Number,
+        default:0,
     },
     payMoney:{
         type:Number,

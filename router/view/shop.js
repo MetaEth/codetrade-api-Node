@@ -3,6 +3,8 @@ let Shop=require('../../module/shop')
 //查找所有数据
 router.get('/find',async (ctx)=>{
     var get_data=ctx.query
+    //查找上架的
+    get_data.is_sale=true
     //如果price存在，转换成json对象
     if(get_data.price){
         get_data.price=JSON.parse(get_data.price)

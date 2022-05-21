@@ -1,10 +1,9 @@
 var router=require('koa-router')()
 let Shop=require('../../module/shop')
-require("mongoose");
 var asyncFuncone = function(i) {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
-            var shop_name=`网站项目网旅${i}`
+            var shop_name=`项目网站旅游${i}`
             var codetype_id="6249aa8980080000d7005e32"
             var platform_id="624a7593e1f2ee47a86511fe"
             var type_id="624004fc0085321f50bf49e2"
@@ -38,7 +37,7 @@ var asyncFuncone = function(i) {
 var asyncFunctwo = function(i) {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
-            var shop_name=`app模板管理${i}`
+            var shop_name=`模板app管理${i}`
             var codetype_id="6247f7dc31baa658dc25be1b"
             var platform_id="624a7595e1f2ee47a86511ff"
             var type_id="624004fc0085321f50bf49e7"
@@ -72,7 +71,7 @@ var asyncFunctwo = function(i) {
 var asyncFuncthree = function(i) {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
-            var shop_name=`小程序模板校园${i}`
+            var shop_name=`模板小程序校园${i}`
             var codetype_id="6247f7dc31baa658dc25be1b"
             var platform_id="624a756c58ef1b1ad8ba4800"
             var type_id="624004fc0085321f50bf49db"
@@ -106,7 +105,7 @@ var asyncFuncthree = function(i) {
 var asyncFuncfour = function(i) {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
-            var shop_name=`其他项目校园${i}`
+            var shop_name=`项目其他校园${i}`
             var codetype_id="6249aa8980080000d7005e32"
             var platform_id="624a75a6e1f2ee47a8651200"
             var type_id="624004fc0085321f50bf49db"
@@ -156,14 +155,25 @@ router.get('/',async (ctx)=>{
     }
     ctx.body="shop"
 })
-router.get('/add',async (ctx)=>{
-
+router.post('/count',async (ctx)=>{
+    var get_data=ctx.request.body
+    //删除 page和pageSize
+    delete get_data.pageSize
+    delete get_data.page
+    var result=await Shop.find(get_data).count();
+    ctx.body=result
 })
-router.get('/edit',async (ctx)=>{
-    ctx.body="user/edit"
+router.post('/find',async (ctx)=>{
+    var pageSize=ctx.request.body.pageSize
+    var page=ctx.request.body.page
+    var skip=(page-1)*pageSize
+    var result=await Shop.find().skip(skip).limit(pageSize).populate('codetype_id platform_id type_id').sort({"shop_sort":-1})
+    ctx.body=result
 })
-router.get('/delete', async (ctx)=>{
-    ctx.body="user/delete"
+router.post('/deleteOne',async (ctx)=>{
+    var id=ctx.request.body.id
+    var result=await Shop.deleteOne({_id:id})
+    ctx.body=result
 })
 module.exports=router.routes()
 

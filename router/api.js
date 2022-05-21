@@ -8,6 +8,7 @@ var notify_url=require('./api/notify_url')
 const User = require("../module/user");
 const tokenConfig = require('../utils/Wx_Secret').tokenConfig
 const jwt = require("jsonwebtoken");
+/*判断登入是否过期*/
 router.get('/getUserInfo', async (ctx) => {
   try {
     const token = ctx.header.authorization // 获取请求 Header 中 Authorization 值

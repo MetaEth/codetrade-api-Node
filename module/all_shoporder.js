@@ -25,9 +25,10 @@ let All_shopOrderSchema=new Schema({
     socketId:{
       type:String,
     },
+    //0代表未支付，1代表支付
     status:{
-        type:String,
-        default:"未确定",
+        type:Number,
+        default:0,
     },
     shopMoney:{
         type:Number,

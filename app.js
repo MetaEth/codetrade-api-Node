@@ -53,10 +53,6 @@ let db=require('./db/index')
   app.use(router.routes()).use(router.allowedMethods())
   console.log("项目运行正常")
 })()
-
-
-
-// app.listen(8081)
 server.listen(8081,()=>{
   console.log("端口：8081已连接")
 });

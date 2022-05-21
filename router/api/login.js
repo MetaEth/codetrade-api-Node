@@ -5,7 +5,6 @@ const tokenConfig = require('../../utils/Wx_Secret').tokenConfig
 const jwt = require('jsonwebtoken')
 router.post('/',async (ctx)=>{
   try {
-
     var get_phone=ctx.request.body.phone
     var get_password=ctx.request.body.password
     var result =await User.findOne({phone:get_phone,password:get_password})
@@ -17,7 +16,7 @@ router.post('/',async (ctx)=>{
         phone: result.phone,
         money: result.money,
       }
-      const token = jwt.sign(userInfo, tokenConfig.privateKey, {expiresIn: '7d'}) // 签发 token， 7天有效期
+      const token = jwt.sign(userInfo, tokenConfig.privateKey, {expiresIn: '7h'}) // 签发 token， 7天有效期
       ctx.body = {status: 200, message: '登陆成功', data: {token: 'Bearer ' + token,userInfo:result}}
 
     } else {
@@ -26,8 +25,6 @@ router.post('/',async (ctx)=>{
   } catch(err) {
     throw new Error(err)
   }
-
-
 })
 
 module.exports=router.routes()
