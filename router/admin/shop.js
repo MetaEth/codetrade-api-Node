@@ -175,5 +175,10 @@ router.post('/deleteOne',async (ctx)=>{
     var result=await Shop.deleteOne({_id:id})
     ctx.body=result
 })
+router.post('/insertOne',async (ctx)=>{
+    var get_data=ctx.request.body
+    ctx.body="ok"
+    console.log(get_data,"get_data")
+})
 module.exports=router.routes()
 

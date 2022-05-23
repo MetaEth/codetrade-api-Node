@@ -5,6 +5,7 @@ var server_time=require('./api/server_time')
 var tencentcloud=require('./api/tencentcloud')
 var wechat=require('./api/wechat')
 var notify_url=require('./api/notify_url')
+var uploadfile=require('./api/uploadfile')
 const User = require("../module/user");
 const tokenConfig = require('../utils/Wx_Secret').tokenConfig
 const jwt = require("jsonwebtoken");
@@ -36,4 +37,5 @@ router.use('/server_time',server_time)
 router.use('/tencentcloud',tencentcloud)
 router.use('/wechat',wechat)
 router.use('/notify_url',notify_url)
+router.use('/uploadfile',uploadfile)
 module.exports=router
