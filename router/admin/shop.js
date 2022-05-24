@@ -177,8 +177,22 @@ router.post('/deleteOne',async (ctx)=>{
 })
 router.post('/insertOne',async (ctx)=>{
     var get_data=ctx.request.body
-    ctx.body="ok"
-    console.log(get_data,"get_data")
+    var result=await Shop.create({
+        shop_name:get_data.shop_name,
+        picture:get_data.picture[0],
+        price:Number(get_data.price).toFixed(2),
+        is_complete:get_data.valueCodeType,
+        codetype_id:get_data.valueType[0],
+        platform_id:get_data.valueType[1],
+        type_id:get_data.valueType[2],
+        download_link:get_data.download_link,
+        label:get_data.valueLable,
+        shop_sort:get_data.valueDate,
+        project_display:get_data.project_display,
+        project_experience:get_data.projectExperience,
+        project_introduce:get_data.project_introduce
+    })
+    ctx.body=result
 })
 module.exports=router.routes()
 

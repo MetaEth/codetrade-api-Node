@@ -5,16 +5,20 @@ const {Double} = require("mongodb");
 let Schema=mongoose.Schema
 let ShopSchema=new Schema({
     shop_name:{
-        type:String
+        type:String,
+        default:true
     },
     picture:{
-        type:String
+        type:String,
+        default:true
     },
     price:{
         type:Number,
+        default:true
     },
     label:{
-        type:Array
+        type:Array,
+        default:true
     },
     is_sale:{
       type:Boolean,
@@ -55,11 +59,9 @@ let ShopSchema=new Schema({
     },
     download_links:{
         type:String,
-        default:null
     },
     shop_sort:{
         type:Date,
-        default:Date.now,
         select: false
     },
     createdAt:{

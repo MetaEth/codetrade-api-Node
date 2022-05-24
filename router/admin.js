@@ -6,6 +6,7 @@ var Codetype=require('./admin/codetype')
 var Type=require('./admin/type')
 var All_viporder=require('./admin/all_viporder')
 var All_shoporder=require('./admin/all_shoporder')
+var upload=require('./admin/upload')
 //引入Order模块
 //后台登入
 router.post('/login',async (ctx)=>{
@@ -43,4 +44,5 @@ router.use('/codetype',Codetype)
 router.use('/type', Type)
 router.use('/all_viporder',All_viporder)
 router.use('/all_shoporder',All_shoporder)
+router.use('/upload',upload)
 module.exports=router
