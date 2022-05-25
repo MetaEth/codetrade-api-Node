@@ -185,7 +185,7 @@ router.post('/insertOne',async (ctx)=>{
         codetype_id:get_data.valueType[0],
         platform_id:get_data.valueType[1],
         type_id:get_data.valueType[2],
-        download_link:get_data.download_link,
+        download_links:get_data.file[0],
         label:get_data.valueLable,
         shop_sort:get_data.valueDate,
         project_display:get_data.project_display,

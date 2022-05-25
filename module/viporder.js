@@ -17,6 +17,10 @@ let vipOrderSchema=new Schema({
         type:String,
         required: true,//是否必填
     },
+    status:{
+        type:Number,
+        default:1,
+    },
     payMoney:{
         type:Number,
         required:true

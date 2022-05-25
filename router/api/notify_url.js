@@ -25,6 +25,8 @@ router.post('/',async (ctx)=>{
         const result = pay.decipher_gcm(ciphertext, associated_data, nonce, key);
         var orderId=result.out_trade_no
         if(result.attach=="shopPay"){
+            //修改订单状态为支付
+            await All_shopOrder.updateOne({orderId:orderId},{status:1})
             //all_shopPay表查询并插入数据
             var object=await All_shopOrder.findOne({orderId:orderId})
             var params={
@@ -39,6 +41,8 @@ router.post('/',async (ctx)=>{
             //向客户端发送支付成功通知
             Socket.io.to(object.socketId).emit('payStatus',{"code": "200", "message": "支付成功","socketId":object.socketId})
         }else if(result.attach=="vipPay"){
+            //修改订单状态为支付
+            await All_vipOrder.updateOne({orderId:orderId},{status:1})
             //all_viporder表查询并插入数据
             var object=await All_vipOrder.findOne({orderId:orderId})
             var params={

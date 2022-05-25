@@ -10,23 +10,32 @@ var upload=require('./admin/upload')
 //引入Order模块
 //后台登入
 router.post('/login',async (ctx)=>{
-    console.log(ctx.request,"登入数据")
-    ctx.body={
-        "code": 20000,
-        "data": {
-            "token": "admin-token"
+    var username=ctx.request.body.username
+    var password=ctx.request.body.password
+    if(username=="admin" && password=="Az1114221010"){
+        console.log("你好")
+        ctx.body={
+            "code": 20000,
+            "data": {
+                "token": "admin-token"
+            }
+        }
+    }else{
+        ctx.body={
+            "code": 400,
+            "msg":"登入失败"
         }
     }
+
 })
 //获取用户
 router.get('/info',async (ctx)=>{
-    console.log(ctx.query,"用户数据")
     ctx.body={
         "code": 20000,
         "data": {
             "roles": ["admin"],
             "introduction": "I am a super administrator",
-            "avatar": "https://img1.baidu.com/it/u=2661581405,2031571728&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281",
+            "avatar": "https://idleduck-1311335507.cos.ap-guangzhou.myqcloud.com/picture/metaX.jpg",
             "name": "Super Admin"
         }
     }

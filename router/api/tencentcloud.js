@@ -1,6 +1,6 @@
 var router=require('koa-router')()
 const tencentcloud = require("tencentcloud-sdk-nodejs")
-var credential=require('../../utils/Wx_Secret').credential
+var cosCredential=require('../../utils/Wx_Secret').cosCredential
 // 导入对应产品模块的client models。
 
 router.get('/',async (ctx)=>{
@@ -23,8 +23,8 @@ router.get('/sendsms',async (ctx)=>{
     const smsClient = tencentcloud.sms.v20210111.Client
     const client = new smsClient({
         credential: {
-            secretId: credential.secretId,
-            secretKey: credential.secretKey
+            secretId: cosCredential.SecretId,
+            secretKey: cosCredential.SecretKey
         },
         region: "ap-guangzhou",
         profile: {

@@ -16,9 +16,10 @@ let shopOrderSchema=new Schema({
         type:String,
         required: true,//是否必填
     },
+    //1代表已经支付
     status:{
-        type:String,
-        default:"已支付",
+        type:Number,
+        default:1,
     },
     shopMoney:{
         type:Number,
