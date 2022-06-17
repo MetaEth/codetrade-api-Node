@@ -9,7 +9,10 @@ let PlatformSchema=new Schema({
     },
     platform_sort:{
       type:Number,
-        required:true
+      required:true
+    },
+    platform_picture:{
+        type:String
     },
     createdAt:{
         type:Date,

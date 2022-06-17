@@ -26,18 +26,21 @@ router.post('/shop_picture', async (ctx, next) => {
         });
     }))
     if(result.statusCode==200){
-        ctx.body={code:200,picture:"https://"+result.Location}
+        console.log(result,"图片")
+        ctx.body={code:200,picture:"https://files.idleduck.cn/picture/"+file.originalFilename}
     }else{
         ctx.body={code:400,msg:"图片存入出错"}
     }
 });
 router.post('/download_link',async (ctx)=>{
     const file = ctx.request.files.file; // 获取上传文件
+    var timestamp = new Date().getTime()
+    console.log(`/file/project@${file.originalFilename.split(".")[0]}-${timestamp}.${file.originalFilename.split(".")[1]}`,"nihk")
     var result= await new Promise(((resolve, reject) => {
         cos.putObject({
             Bucket: cosCredential.Bucket, /* 必须 */
             Region: cosCredential.Region,    /* 必须 */
-            Key: `/file/${file.originalFilename}`,              /* 必须 */
+            Key: `/file/${file.originalFilename.split(".")[0]}-${timestamp}.${file.originalFilename.split(".")[1]}`,              /* 必须 */
             Body: fs.createReadStream(file.filepath), // 上传文件对象
             onProgress: function(progressData) {
                 //console.log(JSON.stringify(progressData));
@@ -48,7 +51,7 @@ router.post('/download_link',async (ctx)=>{
         });
     }))
     if(result.statusCode==200){
-        ctx.body={code:200,download_link:"https://"+result.Location}
+        ctx.body={code:200,download_link:"https://files.idleduck.cn/file/"+timestamp+"-"+file.originalFilename}
     }else{
         ctx.body={code:400,msg:"文件存入出错"}
     }
@@ -74,7 +77,7 @@ router.post('/project_display',async (ctx)=>{
         });
     }))
     if(result.statusCode==200){
-        ctx.body={code:200,project_display:"https://"+result.Location}
+        ctx.body={code:200,project_display:"https://files.idleduck.cn/picture/"+file.originalFilename}
     }else{
         ctx.body={code:400,msg:"文件存入出错"}
     }

@@ -35,7 +35,7 @@ router.get('/info',async (ctx)=>{
         "data": {
             "roles": ["admin"],
             "introduction": "I am a super administrator",
-            "avatar": "https://idleduck-1311335507.cos.ap-guangzhou.myqcloud.com/picture/metaX.jpg",
+            "avatar": "https://files.idleduck.cn/picture/MetaX.png",
             "name": "Super Admin"
         }
     }

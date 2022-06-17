@@ -5,14 +5,6 @@ router.get('/find',async (ctx)=>{
     let result=await Platform.find().sort({"platform_sort":-1})
     ctx.body=result
 })
-router.get('/add',async (ctx)=>{
 
-})
-router.get('/edit',async (ctx)=>{
-
-})
-router.get('/delete', async (ctx)=>{
-
-})
 module.exports=router.routes()
 

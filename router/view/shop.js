@@ -19,17 +19,9 @@ router.get('/find',async (ctx)=>{
 })
 router.get('/findOne',async (ctx)=>{
     var get_id=ctx.query.id
-    let result=await Shop.findOne({_id:get_id}).populate('platform_id type_id').select('-download_links')
+    let result=await Shop.findOne({_id:get_id}).populate('platform_id type_id codetype_id').select('-download_links')
     ctx.body=result
 })
-router.get('/insertOne',async (ctx)=>{
 
-})
-router.get('/updateOne',async (ctx)=>{
-    ctx.body="shop/edit"
-})
-router.get('/deleteOne', async (ctx)=>{
-    ctx.body="shop/delete"
-})
 module.exports=router.routes()
 

@@ -39,8 +39,5 @@ router.post('/updateOne',async (ctx)=>{
   }
 })
 
-router.get('/deleteOne', async (ctx)=>{
-  ctx.body="user/delete"
-})
 module.exports=router.routes()
 
