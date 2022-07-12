@@ -38,12 +38,12 @@ router.post('/login',async (ctx)=>{
             username:adminLogin.username,
             password:adminLogin.password
         }
-        const token = jwt.sign(userInfo, tokenConfig.privateKey, {expiresIn: '1d'}) // 签发 token， 7天有效期
+        const token = jwt.sign(userInfo, tokenConfig.privateKey, {expiresIn: '7d'}) // 签发 token， 7天有效期
         ctx.body = {code: 20000, message: '登陆成功', data: {token: 'Bearer ' + token}}
     }else{
         ctx.body={
             "code": 400,
-            "msg":"登入失败"
+            "message":"登入失败"
         }
     }
 
