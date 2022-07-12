@@ -51,7 +51,7 @@ router.post('/download_link',async (ctx)=>{
         });
     }))
     if(result.statusCode==200){
-        ctx.body={code:200,download_link:"https://files.idleduck.cn/file/"+timestamp+"-"+file.originalFilename}
+        ctx.body={code:200,download_link:"https://files.idleduck.cn/file/"+file.originalFilename.split(".")[0]+"-"+timestamp+"."+file.originalFilename.split(".")[1]}
     }else{
         ctx.body={code:400,msg:"文件存入出错"}
     }

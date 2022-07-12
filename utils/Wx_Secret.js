@@ -13,4 +13,9 @@ exports.cosCredential={
     Bucket: "idleduck-1311335507",
     Region: "ap-guangzhou"  //cos的地区
 }
+//后台登入用户名和密码
+exports.adminLogin={
+    username:"admin",          //后台登入用户名
+    password:"Az1114221010"    //后台登入密码
+}
 

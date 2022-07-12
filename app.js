@@ -20,7 +20,6 @@ var server = http.createServer(app.callback());
 //挂载socket
 var io = socket(server).on("connection",(socket)=>{
   console.log(socket.id+"连接socket")
-  //io.emit('hello',"你好我是服务端发来的数据")
   socket.emit('socketId',socket.id)
   socket.emit('payStatus')
   //接收服务端client发来的事件,用socket.on
